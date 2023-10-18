@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- escaped 사용 하는 이유 -->
+<!-- 게시판 작성 할 때 <>기호 같은걸 사용자가 쓸 수 있음 그렇게 된다면 html이 깨지는 현상이 있어 기본이 escaped 처리 됨-->
+<h1>text vs utext</h1>
+<ul>
+    <li>th:text = <span th:text="${data}"></span></li>
+    <li>th:utext = <span th:utext="${data}"></span></li>
+</ul>
+<h1><span th:inline="none">[[...]] vs [(...)]</span></h1>
+<ul>
+    <li><span th:inline="none">[[...]] = </span>[[${data}]]</li>
+    <li><span th:inline="none">[(...)] = </span>[(${data})]</li>
+</ul>
+</body>
+</html>
