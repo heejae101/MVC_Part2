@@ -2,6 +2,7 @@ package hello.thymeleafbasic.basic;
 
 import lombok.Data;
 import org.apache.el.parser.AstPlus;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,13 +59,42 @@ public class BasicController {
         return "basic/basic-objects";
     }
 
-    @Component("helloBean")
+    @Component("helloBean") // Spring Bean을 만든거다
     static class HelloBean{
         public String hello(String data){
             return "Hello "+data;
         }
     }
 
+    @GetMapping("/date")
+    public String date(Model model){
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "basic/date";
+    }
+
+    @GetMapping("/link")
+    public String link(Model model){
+        model.addAttribute("param1","data1");
+        model.addAttribute("param2","data2");
+        return "basic/link";
+    }
+
+    // 리터럴: 소스코드 상에 고정된 값을 말하는 용어
+    @GetMapping("/literal")
+    public String literal(Model model){
+        model.addAttribute("data","Spring");
+        return "basic/literal";
+    }
+
+    // 연산
+    @GetMapping("/operation")
+    public String operation(Model model) {
+        model.addAttribute("nullData", null);
+        model.addAttribute("data", "Spring!");
+        return "basic/operation";
+    }
+
+    // get가 다 되어있네?
     @Data
     static class User{
         private String username;
